@@ -1,0 +1,28 @@
+# эти параметры стали deprecated, используем вместо них класс SecurityConfig
+management:
+    security:
+        enabled: false
+security:
+    basic:
+        enabled: false
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,
+             org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/my_db?useSSL=false
+    hikari:
+      username: bestuser
+      password: bestuser
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
+    show-sql: true
+
+

@@ -71,7 +71,7 @@ public class Book {
     @JoinColumn
     private Publisher publisher;
 
-    @Column(name = "publisher_year")
+    @Column(name = "publish_year")
     private Integer publisherYear;
 
     private byte[] image;
