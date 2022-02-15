@@ -21,10 +21,9 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String name, byte[] content, Integer pageCount, String isbn, Genre genre, Author author, Publisher publisher, Integer publisherYear, byte[] image, String descr, Long viewCount, Long totalRating, Long totalVoteCount, int avgRating) {
+    public Book(Long id, String name, Integer pageCount, String isbn, Genre genre, Author author, Publisher publisher, Integer publisherYear, byte[] image, String descr, Long viewCount, Long totalRating, Long totalVoteCount, int avgRating) {
         this.id = id;
         this.name = name;
-        this.content = content;
         this.pageCount = pageCount;
         this.isbn = isbn;
         this.genre = genre;

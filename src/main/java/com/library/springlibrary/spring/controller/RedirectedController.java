@@ -10,12 +10,20 @@ import com.library.springlibrary.spring.repository.GenreRepository;
 import com.library.springlibrary.spring.repository.PublisherRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -36,12 +44,13 @@ public class RedirectedController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String baseUrlRedirected(HttpServletRequest request, HttpServletResponse response) {
-        List<Author> authorList = authorRepository.findAll();
-        List<Book> bookList = bookRepository.findAll();
-        List<Genre> genreList = genreRepository.findAll();
-        List<Publisher> publisherList = publisherRepository.findAll();
+    public String baseUrlRedirected(HttpServletRequest request, HttpServletResponse response, @PageableDefault(value=10, page=0, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
 
+
+        Page<Book> bookList = bookRepository.findAllWithoutContent(pageable);
+        bookList.getContent();
+
+        List<Book> topBookList = bookRepository.findTopBooks(pageable);
         return "ok";
     }
 }
