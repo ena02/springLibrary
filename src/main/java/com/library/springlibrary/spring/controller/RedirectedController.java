@@ -47,10 +47,7 @@ public class RedirectedController {
     public String baseUrlRedirected(HttpServletRequest request, HttpServletResponse response, @PageableDefault(value=10, page=0, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
 
 
-        Page<Book> bookList = bookRepository.findAllWithoutContent(pageable);
-        bookList.getContent();
-
-        List<Book> topBookList = bookRepository.findTopBooks(pageable);
+        Page<Book> bookList = bookRepository.findByGenre(13, pageable);
         return "ok";
     }
 }

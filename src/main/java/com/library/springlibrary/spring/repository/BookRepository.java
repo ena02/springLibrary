@@ -24,4 +24,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("select new com.library.springlibrary.domain.Book(b.id, b.image) from Book b")
     List<Book> findTopBooks(Pageable pageable);
+
+
+    @Query("select new com.library.springlibrary.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publisherYear, b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b where b.genre.id = :genreId")
+    Page<Book> findByGenre(@Param("genreId") long id, Pageable pageable);
+
+    @Query("select b.content from Book b where b.id = :id")
+    byte[] getContent(@Param("id") long id);
 }
