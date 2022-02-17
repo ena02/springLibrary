@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 
 public interface BookDAO extends GeneralDAO<Book> {
-    List<String> findTopBooks(int limit);
+    List<Book> findTopBooks(int limit);
 
     byte[] getContent(long id);
 
